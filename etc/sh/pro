@@ -1,0 +1,36 @@
+export \
+      XDG_CONFIG_HOME="$HOME/etc" \
+      XDG_DATA_HOME="$HOME/usr/share" \
+      XDG_CACHE_HOME="$HOME/usr/cache" \
+      XDG_DOWNLOAD_DIR="$HOME/tmp" \
+      XDG_DOCUMENTS_DIR="$HOME/opt/doc" \
+      XDG_MUSIC_DIR="$HOME/opt/mus" \
+      XDG_PICTURES_DIR="$HOME/opt/pic" \
+      XDG_VIDEOS_DIR="$HOME/opt/vid" \
+      PASSWORD_STORE_DIR="$HOME/opt/.pass"
+
+export \
+      SCREENSHOT_DIR="$XDG_PICTURES_DIR/ss" \
+      XDG_DESKTOP_DIR="$XDG_DATA_HOME/applications" \
+      PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie" \
+      XAUTHORITY="$XDG_CACHE_HOME/.Xauthority" \
+      GNUPGHOME="$XDG_DATA_HOME/gnupg" \
+      PYTHONUSERBASE="$XDG_DATA_HOME/python"
+
+export \
+      LESSHISTFILE="/dev/null" \
+      NVIM_LOG_FILE="/dev/null"
+
+export \
+      EDITOR="nvim" \
+      PAGER="nvim -R" \
+      MANPAGER="nvim +Man!"
+
+
+
+star() { ( "$@" & ) >$null 2>&1; }
+star doas cpupower frequency-set --governor performance
+
+
+[[ -z "$DISPLAY" && "$(tty)" = /dev/tty1 ]] && exec startx "$XDG_CONFIG_HOME/x/rc"
+[[ -z "$DISPLAY" && "$(tty)" = /dev/tty2 ]] && exec sway

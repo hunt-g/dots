@@ -1,0 +1,125 @@
+[colors]
+alert = #C23B22
+warning = #C23B22
+background = #00
+background-alt =
+foreground = #bb
+foreground-alt = #55
+
+
+[bar/base]
+background = ${colors.background}
+font-0 = Fira Sans:size=13;2
+font-1 = Font Awesome 5 Free Solid:size=8;0
+font-2 = Font Awesome 5 Brands:size=12;1
+height = 3.5%
+padding = 6
+module-margin = 2
+fixed-center = true
+wm-restack = bspwm
+override-redirect = true
+enable-ipc = true
+
+
+[bar/top]
+inherit = bar/base
+#modules-left = spotify
+modules-right = wifi datetime
+foreground = ${colors.foreground}
+
+
+[bar/bottom]
+inherit = bar/base
+bottom = true
+# modules-left = spotify
+modules-center = bspwm
+modules-right = 
+foreground = ${colors.foreground-alt}
+
+
+[module/bspwm]
+type = internal/bspwm
+ws-icon-default = 
+label-focused = %icon%
+label-urgent = %icon%
+label-occupied = %icon%
+label-empty = %icon%
+label-focused-foreground = ${colors.foreground} 
+label-separator = " "
+label-separator-padding = 6
+enable-click = false
+enable-scroll = false
+reverse-scroll = false
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+format-charging = <animation-charging>
+format-discharging = <ramp-capacity>
+label-full = 
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+label-disconnected = 
+label-connected = 
+
+
+[module/bt]
+type = custom/script
+format-foreground = ${colors.foreground}
+exec = rofi-bluetooth --status
+interval = 1
+click-left = rofi-bluetooth &
+
+
+[module/redshift]
+type = custom/text
+content = 
+click-left = redshift -O 5200 -P
+click-right = redshift -x
+
+
+[module/datetime]
+type = internal/date
+date = %a %b %d  %l:%M %p
+
+
+[module/spotify]
+type = custom/script
+interval = 1
+tail = true
+format-prefix = "  "
+format-foreground = ${colors.foreground}
+exec = playerctl --player=spotifyd metadata -f "{{ title }} - {{ artist }}"
+exec-if = pgrep -x spotifyd
+
+click-left = playerctl --player=spotifyd play-pause 
+click-right = playerctl --player=spotifyd next 
+click-middle = playerctl --player=spotifyd previous 
+
+
+[settings]
+screenchange-reload = true
+
+
+; vim:ft=dosini

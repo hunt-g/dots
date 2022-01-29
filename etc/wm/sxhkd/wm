@@ -1,0 +1,39 @@
+# reload
+super + {_,shift} + Escape
+   bspc {wm -r,quit}
+
+# nodes
+{alt,super} + q
+	bspc node -{k,c}
+
+super + {v,b,n,m,shift+m}
+	bspc node -t {"~tiled","~pseudo_tiled","~floating","~fullscreen", "~monocle"}
+
+ctrl + super + {1-9,0}
+	bspc node -d {1-9,0}
+
+super + shift + {d,a}
+   bspc node @/ -C {forward,backward}
+
+super + shift + o
+   bspc node @parent -R 90
+
+# windows
+super + {1-9,0}
+	bspc desktop -f {1-9,0}
+
+ctrl + alt + {d,a}
+	bspc desktop -f {next,prev}.local
+
+# expand/contract a window
+super + alt + {a,w,s,d}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+super + alt + shift + {a,w,s,d}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + alt + {Left,Down,Up,Right}
+   bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + @equal
+    bspc query -N -d | xargs -I % bspc node % -B

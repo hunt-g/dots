@@ -1,0 +1,28 @@
+#!/bin/sh
+
+wm="$XDG_CONFIG_HOME/wm"
+keybinds="$wm/sxhkd"
+
+m() { bspc monitor "$@" & }
+c() { bspc config "$@" & }
+r() { bspc rule -a "$@" & }
+s() { pkill -x "$1"; { sleep 0.05; "$@" & }; }
+
+   m DP-1   -d 1 2 3 4 5
+   c top_padding 25
+   c bottom_padding 25
+   c left_padding 0
+   c right_padding 0
+   
+   c pointer_modifier mod4
+   c focus_follows_pointer true
+   
+   c window_gap 25
+   c gapless_monocle true
+   c border_width 0
+   
+   s sxhkd    -c       "$keybinds/other" "$keybinds/wm"
+   s picom    --config "$wm/picom"
+   s polybar  -c       "$wm/polybar" top; polybar -c "$wm/polybar" bottom
+   s dunst     -config "$wm/dunst"
+   xsetroot -cursor_name left_ptr &

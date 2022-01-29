@@ -1,0 +1,28 @@
+# launchers
+super + Return
+   kitty
+
+super + space
+   rofi -show drun
+
+super + y
+   rofi-pass
+
+
+# current time
+super + t
+    dunstify -r 10 "$(date "+%F (%a) - %H:%M")"
+
+# screen capture
+super + {_,shift} + s
+   maim {_,-s} $SCREENSHOT_DIR/$(date +%Y-%m-%d_%H-%m-%s).jpg  
+
+# media keys
+XF86Audio{Raise,Lower}Volume
+   pactl set-sink-mute @DEFAULT_SINK@ false; \
+   pactl set-sink-volume @DEFAULT_SINK@ {+,-}2%; \
+   dunstify -r 11 "Volume: $(pactl get-sink-volume @DEFAULT_SINK@ | grep -o -E "[[:digit:]]+%" | sort -u)"
+
+XF86AudioMute
+   pactl set-sink-mute @DEFAULT_SINK@ toggle; \
+   dunstify -r 11 "$(pactl get-sink-mute @DEFAULT_SINK@)"

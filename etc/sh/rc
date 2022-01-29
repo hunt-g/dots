@@ -1,0 +1,14 @@
+PROMPT='%F{blue}> %f'
+RPROMPT='%F{blue}%1~%f'
+HISTFILE="$XDG_CACHE_HOME/zsh/history"
+HISTSIZE=1000
+SAVEHIST=1000
+
+setopt autocd
+unsetopt beep
+bindkey -e
+zstyle :compinstall filename "$ZDOTDIR/.zshrc"
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
+alias config='/usr/bin/git  --git-dir=$HOME/opt/.dots/ --work-tree=$HOME'

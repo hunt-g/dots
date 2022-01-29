@@ -1,0 +1,12 @@
+configuration {
+  display-run: ": ";
+  display-drun: "" ;
+  display-window: "" ;
+  drun-display-format: "{name}";
+  font: "Fira Sans 14";
+  modi: "window,run,drun";
+  show-icons: false;
+}
+
+
+@theme "./theme.rasi"

@@ -1,0 +1,76 @@
+[global]
+	font       = Fira Sans 14px
+	geometry   = "300x5-30+20"
+	#shrink     = true
+
+	#markup     = full
+	#format     = "%s\n%b"
+	#alignment  = center
+	#word_wrap  = true
+
+	dmenu      = rofi -show drun
+	browser    = brave
+
+	icon_position  = left
+	max_icon_size  = 32
+	icon_path      = /dev/null
+
+
+	# borders
+	corner_radius       = 8
+	padding             = 10
+	frame_width         = 0
+	frame_color         = "#f2f2f2"
+	separator_height    = 1
+	separator_color     = frame
+	horizontal_padding  = 10
+
+	idle_threshold      = 0
+	show_indicators     = false
+	show_age_threshold  = 60
+
+[experimental]
+	per_monitor_dpi     = true
+
+[shortcuts]
+	#close              = ctrl+space
+	#close_all          = ctrl+shift+space
+	history             = ctrl+shift+grave
+	context             = ctrl+shift+period
+
+[urgency_low]
+	background          = "#ffffff"
+	foreground          = "#83878cbb"
+	frame_color         = "#f2f2f2"
+	timeout             = 7
+
+[urgency_normal]
+	background          = "#ffffff"
+	foreground          = "#5b5f66cf"
+	frame_color         = "#f2f2f2"
+	timeout             = 7
+
+[urgency_critical]
+	background          = "#ffffff"
+	foreground          = "#5b5f66"
+	frame_color         = "#f2f2f2"
+	timeout             = 0
+
+[stuff]
+	appname = dunstify
+	summary = "[sw][wi][in][td][co][hw]*"
+	set_transient = yes
+	history_ignore = yes
+
+[stuff2]
+	appname = dunstify
+	summary = "vol*"
+	set_transient = yes
+	history_ignore = yes
+
+[nosum]
+	summary = "summary"
+	format  = "%b"
+
+# vim: ft=conf
+

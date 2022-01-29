@@ -1,0 +1,10 @@
+#!/bin/sh
+
+display-adjust
+wallpaper
+
+spotifyd
+
+xset s on +dpms
+unclutter --timeout 10 &
+exec bspwm -c "$XDG_CONFIG_HOME/wm/bspwm"
